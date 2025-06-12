@@ -1,0 +1,18 @@
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>
+
+@if (isLink) {
+  <a [href]="href" [class]="classes" [attr.aria-disabled]="ariaDisabled">
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </a>
+} @else {
+  <button
+    [disabled]="ariaDisabled"
+    [class]="classes"
+    [attr.aria-busy]="loading"
+    (click)="handleClick()"
+  >
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </button>
+}

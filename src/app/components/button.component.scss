@@ -1,0 +1,78 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-radius: 4px;
+
+  &--primary {
+    background: blue;
+    color: #fff;
+  }
+  &--secondary {
+    background: lightblue;
+    color: black;
+  }
+
+  &--tertiary {
+    background: grey;
+    color: white;
+  }
+
+  &--small {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  &--medium {
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+  &--large {
+    padding: 12px 16px;
+    font-size: 20px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid blue;
+    outline-offset: 2px;
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.is-loading {
+    color: transparent;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid white;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+  }
+}
+
+a.btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -16,6 +16,12 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
+    "paths": {
+      "@styles": [
+        "./projects/styles/src/public-api.ts"
+      ],
+      "@ui-kit": ["./projects/ui-kit/src/public-api.ts"]
+    },
     "module": "ES2022"
   },
   "angularCompilerOptions": {

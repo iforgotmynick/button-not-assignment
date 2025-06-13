@@ -1,0 +1,136 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 0;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    transition: background 0.2s ease;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: color-burn;
+  }
+
+  & > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  &--primary {
+    background: var(--color-primary);
+    color: var(--text-primary);
+
+    &:hover::after {
+      background: var(--state-primary-hover);
+    }
+
+    &:focus-visible::after {
+      background: var(--state-primary-focus);
+    }
+
+    &:active::after {
+      background: var(--state-primary-pressed);
+    }
+  }
+
+  &--secondary {
+    background: var(--color-secondary);
+    color: var(--text-secondary);
+
+    &:hover::after {
+      background: var(--state-secondary-hover);
+    }
+
+    &:focus-visible::after {
+      background: var(--state-secondary-focus);
+    }
+
+    &:active::after {
+      background: var(--state-secondary-pressed);
+    }
+  }
+
+  &--tertiary {
+    background: var(--color-tertiary);
+    color: var(--text-tertiary);
+
+    &:hover::after {
+      background: var(--state-tertiary-hover);
+    }
+
+    &:focus-visible::after {
+      background: var(--state-tertiary-focus);
+    }
+
+    &:active::after {
+      background: var(--state-tertiary-pressed);
+    }
+  }
+
+  &--small {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  &--medium {
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+
+  &--large {
+    padding: 12px 16px;
+    font-size: 20px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.is-loading {
+    color: transparent;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid var(--text-secondary);
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+  }
+}
+
+a.btn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

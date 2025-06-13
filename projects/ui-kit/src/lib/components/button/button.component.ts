@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -12,6 +13,7 @@ import {
   imports: [CommonModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent implements OnChanges {
   @Input() type: 'primary' | 'secondary' | 'tertiary' = 'primary';

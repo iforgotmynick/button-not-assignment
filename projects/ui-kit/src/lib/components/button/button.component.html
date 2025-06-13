@@ -3,11 +3,17 @@
 </ng-template>
 
 @if (isLink) {
-  <a [href]="href" [class]="classes" [attr.aria-disabled]="ariaDisabled">
+  <a
+    data-testid="button-link"
+    [href]="href"
+    [class]="classes"
+    [attr.aria-disabled]="ariaDisabled"
+  >
     <ng-container [ngTemplateOutlet]="content"></ng-container>
   </a>
 } @else {
   <button
+    data-testid="button"
     [disabled]="ariaDisabled"
     [class]="classes"
     [attr.aria-busy]="loading"

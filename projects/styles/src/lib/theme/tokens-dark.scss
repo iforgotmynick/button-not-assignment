@@ -1,0 +1,33 @@
+@use "../colors" as *;
+
+$background: $black;
+
+// primary
+$color-primary: $blue-200;
+$color-primary-disabled: $blue-200;
+$text-primary: $black;
+$text-primary-disabled: rgba($black, $dark-disabled-opacity);
+
+$state-primary-hover: rgba($blue-200, $dark-hover-opacity);
+$state-primary-focus: rgba($blue-200, $dark-focus-opacity);
+$state-primary-pressed: rgba($blue-200, $dark-pressed-opacity);
+
+// secondary
+$color-secondary: $grey-800;
+$color-secondary-disabled: $grey-800;
+$text-secondary: $blue-200;
+$text-secondary-disabled: rgba($blue-200, $dark-disabled-opacity);
+
+$state-secondary-hover: rgba($grey-600, $dark-hover-opacity);
+$state-secondary-focus: rgba($grey-600, $dark-focus-opacity);
+$state-secondary-pressed: rgba($grey-600, $dark-pressed-opacity);
+
+// tertiary
+$color-tertiary: transparent;
+$color-tertiary-disabled: transparent;
+$text-tertiary: $blue-200;
+$text-tertiary-disabled: rgba($blue-200, $dark-disabled-opacity);
+
+$state-tertiary-hover: rgba($blue-200, $dark-hover-opacity);
+$state-tertiary-focus: rgba($blue-200, $dark-focus-opacity);
+$state-tertiary-pressed: rgba($blue-200, $dark-pressed-opacity);

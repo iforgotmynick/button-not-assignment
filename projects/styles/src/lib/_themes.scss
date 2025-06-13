@@ -1,0 +1,15 @@
+@use './theme/tokens-light' as light;
+@use './theme/tokens-dark' as dark;
+@use './injector' as injector;
+@use 'sass:meta';
+
+[data-theme='light'],
+:root {
+  $tokens: meta.module-variables('light');
+  @include injector.inject($tokens);
+}
+
+[data-theme='dark'] {
+  $tokens: meta.module-variables('dark');
+  @include injector.inject($tokens);
+}

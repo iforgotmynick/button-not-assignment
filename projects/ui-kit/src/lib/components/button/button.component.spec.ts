@@ -6,6 +6,12 @@ describe('ButtonComponent', () => {
   let fixture: ComponentFixture<ButtonComponent>;
   let component: ButtonComponent;
 
+  const getButton = (): HTMLButtonElement | undefined =>
+    fixture.debugElement.query(By.css('[data-testid="button"]'))?.nativeElement;
+  const getLink = (): HTMLAnchorElement | undefined =>
+    fixture.debugElement.query(By.css('[data-testid="button-link"]'))
+      ?.nativeElement;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ButtonComponent],
@@ -13,7 +19,6 @@ describe('ButtonComponent', () => {
 
     fixture = TestBed.createComponent(ButtonComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   afterEach(() => jest.clearAllMocks());
@@ -22,28 +27,29 @@ describe('ButtonComponent', () => {
     component.href = undefined;
     fixture.detectChanges();
 
-    const buttonEl = fixture.debugElement.query(By.css('button'));
-    expect(buttonEl).toBeTruthy();
+    expect(getButton()).toBeTruthy();
   });
 
   it('should render as an <a> when href is provided', () => {
     component.href = '/some-link';
     fixture.detectChanges();
 
-    const linkEl = fixture.debugElement.query(By.css('a'));
+    const linkEl = getLink();
     expect(linkEl).toBeTruthy();
-    expect(linkEl.attributes['href']).toBe('/some-link');
+    expect(linkEl?.getAttribute('href')).toBe('/some-link');
   });
 
   it('should apply the correct variant and size classes', () => {
     component.type = 'secondary';
     component.size = 'large';
+    component.ngOnChanges();
     fixture.detectChanges();
 
-    const btnEl = fixture.debugElement.query(
-      By.css(component.isLink ? 'a' : 'button'),
-    );
-    const classList = btnEl.nativeElement.className;
+    const btnEl = getButton();
+
+    expect(btnEl).toBeTruthy();
+
+    const classList = btnEl!.classList;
 
     expect(classList).toContain('btn--secondary');
     expect(classList).toContain('btn--large');
@@ -51,27 +57,34 @@ describe('ButtonComponent', () => {
 
   it('should apply "is-disabled" class and disable button if disabled=true', () => {
     component.disabled = true;
+    component.ngOnChanges();
     fixture.detectChanges();
 
-    const btnEl = fixture.debugElement.query(By.css('button'));
-    expect(btnEl.nativeElement.disabled).not.toBeFalsy();
-    expect(btnEl.nativeElement.className).toContain('is-disabled');
+    const btnEl = getButton();
+    expect(btnEl).toBeTruthy();
+    expect(btnEl!.disabled).not.toBeFalsy();
+    expect(btnEl!.classList).toContain('is-disabled');
   });
 
   it('should apply "is-loading" class and aria-busy=true if loading=true', () => {
     component.loading = true;
+    component.ngOnChanges();
     fixture.detectChanges();
 
-    const btnEl = fixture.debugElement.query(By.css('button'));
-    expect(btnEl.nativeElement.getAttribute('aria-busy')).toBe('true');
-    expect(btnEl.nativeElement.className).toContain('is-loading');
+    const btnEl = getButton();
+    expect(btnEl).toBeTruthy();
+    expect(btnEl!.getAttribute('aria-busy')).toBe('true');
+    expect(btnEl!.classList).toContain('is-loading');
   });
 
   it('should emit onClick when clicked and not disabled', () => {
     const spy = jest.spyOn(component.onClick, 'emit');
-    const btnEl = fixture.debugElement.query(By.css('button'));
+    fixture.detectChanges();
 
-    btnEl.nativeElement.click();
+    const btnEl = getButton();
+
+    expect(btnEl).toBeTruthy();
+    btnEl!.click();
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -80,9 +93,10 @@ describe('ButtonComponent', () => {
     fixture.detectChanges();
 
     const spy = jest.spyOn(component.onClick, 'emit');
-    const btnEl = fixture.debugElement.query(By.css('button'));
+    const btnEl = getButton();
 
-    btnEl.nativeElement.click();
+    expect(btnEl).toBeTruthy();
+    btnEl!.click();
     expect(spy).not.toHaveBeenCalled();
   });
 });

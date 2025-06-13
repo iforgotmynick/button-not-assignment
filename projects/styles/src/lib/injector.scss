@@ -1,0 +1,5 @@
+@mixin inject($module) {
+  @each $name, $value in $module {
+    --#{$name}: #{$value};
+  }
+}

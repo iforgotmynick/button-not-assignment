@@ -1,5 +1,19 @@
 <ng-template #content>
-  <ng-content></ng-content>
+  <span class="btn__content">
+    @if (icon && iconPosition === "left") {
+      <span class="btn__icon btn__icon--left" aria-hidden="true">
+        <img [src]="icon" alt="" class="btn__img" />
+      </span>
+    }
+
+    <ng-content></ng-content>
+
+    @if (icon && iconPosition === "right") {
+      <span class="btn__icon btn__icon--right" aria-hidden="true">
+        <img [src]="icon" alt="" class="btn__img" />
+      </span>
+    }
+  </span>
 </ng-template>
 
 @if (isLink) {

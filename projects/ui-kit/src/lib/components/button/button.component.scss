@@ -3,6 +3,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  vertical-align: middle;
   font-weight: 600;
   font-family: inherit;
   border: none;
@@ -119,6 +120,34 @@
       animation: spin 0.8s linear infinite;
     }
   }
+}
+
+.btn__content {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn__icon--left {
+  margin-right: 4px;
+}
+
+.btn__icon--right {
+  margin-left: 4px;
+}
+
+.btn__img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 a.btn {

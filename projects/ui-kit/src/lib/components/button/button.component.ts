@@ -21,6 +21,7 @@ export class ButtonComponent implements OnChanges {
   @Input() disabled = false;
   @Input() loading = false;
   @Input() href?: string;
+  @Input() icon?: string;
   @Input() iconPosition?: 'left' | 'right' = 'left';
 
   @Output() readonly onClick = new EventEmitter<void>();

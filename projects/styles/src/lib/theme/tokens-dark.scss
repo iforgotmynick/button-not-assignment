@@ -15,12 +15,12 @@ $state-primary-pressed: rgba($blue-200, $dark-pressed-opacity);
 // secondary
 $color-secondary: $grey-900;
 $color-secondary-disabled: $grey-800;
-$text-secondary: $white;
-$text-secondary-disabled: rgba($white, $dark-disabled-opacity);
+$text-secondary: $grey-100;
+$text-secondary-disabled: rgba($grey-100, $dark-disabled-opacity);
 
-$state-secondary-hover: rgba($white, $dark-hover-opacity);
-$state-secondary-focus: rgba($white, $dark-focus-opacity);
-$state-secondary-pressed: rgba($white, $dark-pressed-opacity);
+$state-secondary-hover: rgba($grey-100, $dark-hover-opacity);
+$state-secondary-focus: rgba($grey-100, $dark-focus-opacity);
+$state-secondary-pressed: rgba($grey-100, $dark-pressed-opacity);
 
 // tertiary
 $color-tertiary: transparent;

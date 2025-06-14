@@ -1,0 +1,56 @@
+@mixin button-variant($name, $props) {
+  &--#{$name} {
+    background: map-get($props, background);
+    color: map-get($props, color);
+
+    @if map-get($props, mix-blend-diff) {
+      &::after {
+        mix-blend-mode: difference;
+      }
+    }
+
+    @if map-has-key($props, border) {
+      border: map-get($props, border);
+    }
+
+    &:hover::after {
+      background: map-get($props, hover);
+    }
+
+    &:focus-visible::after {
+      background: map-get($props, focus);
+    }
+
+    &:active::after {
+      background: map-get($props, pressed);
+    }
+
+    &.is-loading::before {
+      border-color: map-get($props, loader);
+      border-top-color: transparent;
+    }
+  }
+}
+
+@mixin button-size($name, $props) {
+  &--#{$name} {
+    padding: map-get($props, padding-y) map-get($props, padding-x);
+    font-size: map-get($props, font-size);
+    min-height: calc(map-get($props, icon-size) + map-get($props, padding-y));
+    min-width: calc(map-get($props, icon-size) + map-get($props, padding-y));
+
+    &.is-loading::before {
+      width: map-get($props, icon-size);
+      height: map-get($props, icon-size);
+    }
+
+    .btn__img {
+      width: map-get($props, icon-size);
+      height: map-get($props, icon-size);
+    }
+
+    .btn__content {
+      gap: map-get($props, gap);
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@use "./tokens" as *;
+
+$button-variants: (
+  "primary": (
+    background: var(--color-primary),
+    color: var(--text-primary),
+    hover: var(--state-primary-hover),
+    focus: var(--state-primary-focus),
+    pressed: var(--state-primary-pressed),
+    loader: var(--loader-color-primary),
+    mix-blend-diff: true
+  ),
+  "secondary": (
+    background: var(--color-secondary),
+    color: var(--text-secondary),
+    hover: var(--state-secondary-hover),
+    focus: var(--state-secondary-focus),
+    pressed: var(--state-secondary-pressed),
+    loader: var(--loader-color-secondary),
+    mix-blend-diff: false
+  ),
+  "tertiary": (
+    background: var(--color-tertiary),
+    color: var(--text-tertiary),
+    hover: var(--state-tertiary-hover),
+    focus: var(--state-tertiary-focus),
+    pressed: var(--state-tertiary-pressed),
+    loader: var(--loader-color-tertiary),
+    border: $border-width-1 solid var(--text-tertiary),
+    mix-blend-diff: false
+  )
+);

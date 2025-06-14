@@ -1,0 +1,25 @@
+@use "./tokens" as *;
+
+$button-sizes: (
+  "small": (
+    padding-y: $spacing-2,
+    padding-x: $spacing-3,
+    font-size: $font-s,
+    icon-size: $icon-size-s,
+    gap: $spacing-1
+  ),
+  "medium": (
+    padding-y: $spacing-3,
+    padding-x: $spacing-4,
+    font-size: $font-m,
+    icon-size: $icon-size-m,
+    gap: $spacing-2
+  ),
+  "large": (
+    padding-y: $spacing-4,
+    padding-x: $spacing-5,
+    font-size: $font-l,
+    icon-size: $icon-size-l,
+    gap: $spacing-3
+  )
+);

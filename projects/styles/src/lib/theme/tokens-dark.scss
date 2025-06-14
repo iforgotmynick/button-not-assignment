@@ -1,4 +1,4 @@
-@use "../colors" as *;
+@use "../tokens/colors" as *;
 
 $background: $black;
 
@@ -13,14 +13,14 @@ $state-primary-focus: rgba($blue-200, $dark-focus-opacity);
 $state-primary-pressed: rgba($blue-200, $dark-pressed-opacity);
 
 // secondary
-$color-secondary: $grey-800;
+$color-secondary: $grey-900;
 $color-secondary-disabled: $grey-800;
-$text-secondary: $blue-200;
-$text-secondary-disabled: rgba($blue-200, $dark-disabled-opacity);
+$text-secondary: $white;
+$text-secondary-disabled: rgba($white, $dark-disabled-opacity);
 
-$state-secondary-hover: rgba($grey-600, $dark-hover-opacity);
-$state-secondary-focus: rgba($grey-600, $dark-focus-opacity);
-$state-secondary-pressed: rgba($grey-600, $dark-pressed-opacity);
+$state-secondary-hover: rgba($white, $dark-hover-opacity);
+$state-secondary-focus: rgba($white, $dark-focus-opacity);
+$state-secondary-pressed: rgba($white, $dark-pressed-opacity);
 
 // tertiary
 $color-tertiary: transparent;
@@ -38,3 +38,8 @@ $toggle-indicator: $blue-200;
 $toggle-text: $blue-300;
 $toggle-active-text: $black;
 $toggle-hover: rgba($blue-200, $dark-hover-opacity);
+
+//loader
+$loader-color-primary: $black;
+$loader-color-secondary: $blue-200;
+$loader-color-tertiary: $blue-200;

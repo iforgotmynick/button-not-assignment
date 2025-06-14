@@ -1,5 +1,6 @@
 @use '../../theme/tokens-light.scss' as light;
 @use '../../theme/tokens-dark.scss' as dark;
+@use '../../index' as tokens;
 
 :root[data-theme='light'] {
   --toggle-bg: #{light.$toggle-bg};
@@ -26,21 +27,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 72px;
-  height: 24px;
-  padding: 2px;
-  border-radius: 9999px;
+  width: calc(3 * tokens.$icon-size-xl);
+  height: tokens.$icon-size-xl;
+  padding: tokens.$spacing-1;
+  border-radius: tokens.$border-radius-max;
   background-color: var(--toggle-bg);
   transition: background-color 0.3s ease;
 
   &::after {
     content: '';
     position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
+    top: tokens.$spacing-1;
+    left: tokens.$spacing-1;
+    width: tokens.$icon-size-xl;
+    height: tokens.$icon-size-xl;
+    border-radius: tokens.$border-radius-circle;
     background-color: var(--toggle-indicator);
     z-index: 0;
     transition: left 0.25s ease, background-color 0.25s ease;
@@ -48,28 +49,28 @@
 }
 
 .btn-grp.light::after {
-  left: 2px;
+  left: calc(0 * tokens.$icon-size-xl + tokens.$spacing-1);
 }
 .btn-grp.system::after {
-  left: 26px;
+  left: calc(1 * tokens.$icon-size-xl + tokens.$spacing-1);
 }
 .btn-grp.dark::after {
-  left: 50px;
+  left: calc(2 * tokens.$icon-size-xl + tokens.$spacing-1);
 }
 
 button {
-  flex: 1 0 24px;
-  width: 24px;
-  height: 24px;
+  flex: 1 0 tokens.$icon-size-xl;
+  width: tokens.$icon-size-xl;
+  height: tokens.$icon-size-xl;
   padding: 0;
   margin: 0;
   border: none;
   background: transparent;
   color: var(--toggle-text);
-  font-size: 14px;
+  font-size: tokens.$font-m;
   line-height: 1;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: tokens.$border-radius-circle;
   z-index: 1;
   display: flex;
   align-items: center;

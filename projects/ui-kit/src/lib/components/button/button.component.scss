@@ -1,3 +1,5 @@
+@use "lib/index" as *;
+
 .btn {
   position: relative;
   display: inline-flex;
@@ -9,7 +11,7 @@
   border: none;
   cursor: pointer;
   transition: background 0.2s ease;
-  border-radius: 4px;
+  border-radius: $border-radius-l;
   overflow: hidden;
   z-index: 0;
 
@@ -21,7 +23,7 @@
     transition: background 0.2s ease;
     pointer-events: none;
     z-index: 1;
-    mix-blend-mode: color-burn;
+    mix-blend-mode: difference;
   }
 
   & > * {
@@ -66,6 +68,7 @@
   &--tertiary {
     background: var(--color-tertiary);
     color: var(--text-tertiary);
+    border: $border-width-1 solid var(--text-tertiary);
 
     &:hover::after {
       background: var(--state-tertiary-hover);
@@ -78,26 +81,47 @@
     &:active::after {
       background: var(--state-tertiary-pressed);
     }
+
+    &.btn--small {
+      padding: calc(#{$spacing-2} - #{$border-width-1})
+        calc(#{$spacing-3} - #{$border-width-1});
+    }
+
+    &.btn--medium {
+      padding: calc(#{$spacing-3} - #{$border-width-1})
+        calc(#{$spacing-4} - #{$border-width-1});
+    }
+
+    &.btn--large {
+      padding: calc(#{$spacing-4} - #{$border-width-1})
+        calc(#{$spacing-5} - #{$border-width-1});
+    }
   }
 
   &--small {
-    padding: 4px 8px;
-    font-size: 12px;
+    padding: $spacing-2 $spacing-3;
+    font-size: $font-s;
+    min-height: calc($icon-size-s + $spacing-2);
+    min-width: calc($icon-size-s + $spacing-2);
   }
 
   &--medium {
-    padding: 8px 12px;
-    font-size: 16px;
+    padding: $spacing-3 $spacing-4;
+    font-size: $font-m;
+    min-height: calc($icon-size-m + $spacing-3);
+    min-width: calc($icon-size-m + $spacing-3);
   }
 
   &--large {
-    padding: 12px 16px;
-    font-size: 20px;
+    padding: $spacing-4 $spacing-5;
+    font-size: $font-l;
+    min-height: calc($icon-size-l + $spacing-4);
+    min-width: calc($icon-size-l + $spacing-4);
   }
 
   &:focus-visible {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
+    outline: $border-width-2 solid transparent;
+    outline-offset: $spacing-1;
   }
 
   &.is-disabled {
@@ -112,12 +136,41 @@
     &::before {
       content: "";
       position: absolute;
-      width: 1rem;
-      height: 1rem;
-      border: 2px solid var(--text-secondary);
-      border-top: 2px solid transparent;
-      border-radius: 50%;
+      border: $border-width-2 solid var(--text-secondary);
+      border-top: $border-width-2 solid transparent;
+      border-radius: $border-radius-circle;
       animation: spin 0.8s linear infinite;
+      transform-origin: center;
+    }
+
+    &.btn--small::before {
+      width: $icon-size-s;
+      height: $icon-size-s;
+    }
+
+    &.btn--medium::before {
+      width: $icon-size-m;
+      height: $icon-size-m;
+    }
+
+    &.btn--large::before {
+      width: $icon-size-l;
+      height: $icon-size-l;
+    }
+
+    &.btn--primary::before {
+      border-color: var(--loader-color-primary);
+      border-top-color: transparent;
+    }
+
+    &.btn--secondary::before {
+      border-color: var(--loader-color-secondary);
+      border-top-color: transparent;
+    }
+
+    &.btn--tertiary::before {
+      border-color: var(--loader-color-tertiary);
+      border-top-color: transparent;
     }
   }
 }
@@ -125,7 +178,18 @@
 .btn__content {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+
+  .btn--small & {
+    gap: $spacing-1;
+  }
+
+  .btn--medium & {
+    gap: $spacing-2;
+  }
+
+  .btn--large & {
+    gap: $spacing-3;
+  }
 }
 
 .btn__icon {
@@ -135,19 +199,31 @@
 }
 
 .btn__icon--left {
-  margin-right: 4px;
+  margin-right: $spacing-2;
 }
 
 .btn__icon--right {
-  margin-left: 4px;
+  margin-left: $spacing-2;
 }
 
 .btn__img {
-  width: 16px;
-  height: 16px;
   object-fit: contain;
-  vertical-align: middle;
-  display: inline-block;
+  display: block;
+
+  .btn--small & {
+    width: $icon-size-s;
+    height: $icon-size-s;
+  }
+
+  .btn--medium & {
+    width: $icon-size-m;
+    height: $icon-size-m;
+  }
+
+  .btn--large & {
+    width: $icon-size-l;
+    height: $icon-size-l;
+  }
 }
 
 a.btn {

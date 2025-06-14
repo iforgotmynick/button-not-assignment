@@ -1,3 +1,9 @@
+@forward './spacing';
+@forward './border-radii';
+@forward './border-width';
+@forward './fonts';
+@forward './icon-sizes';
+
 $background: var(--background);
 
 $color-primary: var(--color-primary);
@@ -27,3 +33,7 @@ $state-tertiary-focus: var(--state-tertiary-focus);
 $state-tertiary-pressed: var(--state-tertiary-pressed);
 
 $border-default: var(--border-default);
+
+$loader-color-primary: var(--loader-color-primary);
+$loader-color-secondary: var(--loader-color-secondary);
+$loader-color-tertiary: var(--loader-color-tertiary);

@@ -8,6 +8,9 @@
     [href]="href"
     [class]="classes"
     [attr.aria-disabled]="ariaDisabled"
+    [attr.role]="'link'"
+    [attr.tabindex]="ariaDisabled ? -1 : 0"
+    (keydown)="onKeyDown($event)"
   >
     <ng-container [ngTemplateOutlet]="content"></ng-container>
   </a>
@@ -17,7 +20,11 @@
     [disabled]="ariaDisabled"
     [class]="classes"
     [attr.aria-busy]="loading"
+    [attr.aria-disabled]="ariaDisabled"
+    [attr.role]="'button'"
+    [attr.tabindex]="ariaDisabled ? -1 : 0"
     (click)="handleClick()"
+    (keydown)="onKeyDown($event)"
   >
     <ng-container [ngTemplateOutlet]="content"></ng-container>
   </button>

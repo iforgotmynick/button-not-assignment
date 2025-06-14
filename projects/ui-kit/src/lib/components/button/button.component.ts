@@ -55,4 +55,16 @@ export class ButtonComponent implements OnChanges {
     }
     this.onClick.emit();
   }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (this.ariaDisabled) return;
+
+    const isEnter = event.key === 'Enter';
+    const isSpace = event.key === ' ' || event.code === 'Space';
+
+    if ((isEnter || isSpace) && this.isLink) {
+      event.preventDefault();
+      this.handleClick();
+    }
+  }
 }

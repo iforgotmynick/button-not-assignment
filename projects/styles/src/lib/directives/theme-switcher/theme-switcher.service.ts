@@ -1,4 +1,4 @@
-import { Injectable, signal, computed, Signal } from '@angular/core';
+import { Injectable, signal, computed, Signal, effect } from '@angular/core';
 import { ThemeChoice } from './theme-switcher.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -16,9 +16,17 @@ export class ThemeService {
     return theme === 'system' ? (prefersDark ? 'dark' : 'light') : theme;
   });
 
+  constructor() {
+    effect(() => {
+      document.documentElement.setAttribute(
+        'data-theme',
+        this.effectiveTheme(),
+      );
+    });
+  }
+
   setTheme(value: ThemeChoice) {
     this.theme.set(value);
-    document.documentElement.setAttribute('data-theme', this.effectiveTheme());
     localStorage.setItem('theme', value);
   }
 }

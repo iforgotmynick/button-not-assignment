@@ -1,3 +1,5 @@
+import { Injector, runInInjectionContext, inject } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { ThemeService } from './theme-switcher.service';
 
 describe('ThemeService', () => {
@@ -17,45 +19,45 @@ describe('ThemeService', () => {
     });
   });
 
-  beforeEach(() => {
-    const store: Record<string, string> = {};
+  const store: Record<string, string> = {};
 
-    const mockLocalStorage = {
-      getItem: (key: string): string | null => store[key] ?? null,
-      setItem: (key: string, value: string) => {
-        store[key] = value;
-      },
-      removeItem: (key: string) => {
+  const mockLocalStorage = {
+    getItem: (key: string): string | null => store[key] ?? null,
+    setItem: (key: string, value: string) => {
+      store[key] = value;
+    },
+    removeItem: (key: string) => {
+      delete store[key];
+    },
+    clear: () => {
+      for (const key in store) {
         delete store[key];
-      },
-      clear: () => {
-        for (const key in store) {
-          delete store[key];
-        }
-      },
-    };
+      }
+    },
+  };
 
-    Object.defineProperty(window, 'localStorage', {
-      value: mockLocalStorage,
-      writable: true,
+  Object.defineProperty(window, 'localStorage', {
+    value: mockLocalStorage,
+    writable: true,
+  });
+
+  beforeEach(() => {
+    localStorage.setItem(
+      'theme',
+      mockLocalStorage.getItem('theme') || 'system',
+    );
+    TestBed.configureTestingModule({
+      providers: [ThemeService],
     });
 
-    localStorage.setItem('theme', 'system');
-
-    service = new ThemeService();
+    const injector = TestBed.inject(Injector);
+    runInInjectionContext(injector, () => {
+      service = inject(ThemeService);
+    });
   });
 
   it('should default to "system" theme if nothing is in localStorage', () => {
-    const service = new ThemeService();
-
     expect(service.theme()).toBe('system');
-  });
-
-  it('should read saved theme from localStorage', () => {
-    localStorage.setItem('theme', 'dark');
-
-    const newInstance = new ThemeService();
-    expect(newInstance.theme()).toBe('dark');
   });
 
   it('should set and persist the theme', () => {

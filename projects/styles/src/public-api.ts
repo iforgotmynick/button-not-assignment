@@ -1,1 +1,1 @@
-export * from './lib/directives/theme-switcher/theme-switcher.directive';
+export * from './lib/components/theme-toggle/theme-toggle.component';

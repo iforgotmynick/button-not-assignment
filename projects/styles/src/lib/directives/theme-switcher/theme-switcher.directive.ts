@@ -1,4 +1,4 @@
-import { Directive, HostListener, Input } from '@angular/core';
+import { Directive, HostListener, inject, Input } from '@angular/core';
 import { ThemeChoice } from './theme-switcher.interface';
 import { ThemeService } from './theme-switcher.service';
 
@@ -9,7 +9,7 @@ import { ThemeService } from './theme-switcher.service';
 export class ThemeSwitchDirective {
   @Input('appThemeSwitch') theme!: ThemeChoice;
 
-  constructor(private readonly themeService: ThemeService) {}
+  readonly themeService = inject(ThemeService);
 
   @HostListener('click')
   onClick() {

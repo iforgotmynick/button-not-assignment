@@ -1,0 +1,88 @@
+@use '../../theme/tokens-light.scss' as light;
+@use '../../theme/tokens-dark.scss' as dark;
+
+:root[data-theme='light'] {
+  --toggle-bg: #{light.$toggle-bg};
+  --toggle-indicator: #{light.$toggle-indicator};
+  --toggle-text: #{light.$toggle-text};
+  --toggle-active-text: #{light.$toggle-active-text};
+  --toggle-hover: #{light.$toggle-hover};
+}
+
+:root[data-theme='dark'] {
+  --toggle-bg: #{dark.$toggle-bg};
+  --toggle-indicator: #{dark.$toggle-indicator};
+  --toggle-text: #{dark.$toggle-text};
+  --toggle-active-text: #{dark.$toggle-active-text};
+  --toggle-hover: #{dark.$toggle-hover};
+}
+
+.container {
+  text-align: center;
+}
+
+.btn-grp {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 72px;
+  height: 24px;
+  padding: 2px;
+  border-radius: 9999px;
+  background-color: var(--toggle-bg);
+  transition: background-color 0.3s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--toggle-indicator);
+    z-index: 0;
+    transition: left 0.25s ease, background-color 0.25s ease;
+  }
+}
+
+.btn-grp.light::after {
+  left: 2px;
+}
+.btn-grp.system::after {
+  left: 26px;
+}
+.btn-grp.dark::after {
+  left: 50px;
+}
+
+button {
+  flex: 1 0 24px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--toggle-text);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+
+  &.light-on,
+  &.system-on,
+  &.dark-on {
+    color: var(--toggle-active-text);
+    font-weight: bold;
+  }
+
+  &:hover {
+    background-color: var(--toggle-hover);
+  }
+}

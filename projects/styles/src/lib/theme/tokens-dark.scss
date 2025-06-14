@@ -31,3 +31,10 @@ $text-tertiary-disabled: rgba($blue-200, $dark-disabled-opacity);
 $state-tertiary-hover: rgba($blue-200, $dark-hover-opacity);
 $state-tertiary-focus: rgba($blue-200, $dark-focus-opacity);
 $state-tertiary-pressed: rgba($blue-200, $dark-pressed-opacity);
+
+//theme-toggler
+$toggle-bg: $grey-800;
+$toggle-indicator: $blue-200;
+$toggle-text: $blue-300;
+$toggle-active-text: $black;
+$toggle-hover: rgba($blue-200, $dark-hover-opacity);

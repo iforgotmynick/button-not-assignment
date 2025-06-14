@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="btn-grp" [class]="choice()">
+    <button
+      class="light"
+      [class.light-on]="choice() === 'light'"
+      [class.light-off]="choice() !== 'light'"
+      type="button"
+      appThemeSwitch="light"
+      aria-label="Enable light theme"
+    >
+      ☀️
+    </button>
+
+    <button
+      class="system"
+      [class.system-on]="choice() === 'system'"
+      [class.system-off]="choice() !== 'system'"
+      type="button"
+      appThemeSwitch="system"
+      aria-label="Use system theme"
+    >
+      🤖
+    </button>
+
+    <button
+      class="dark"
+      [class.dark-on]="choice() === 'dark'"
+      [class.dark-off]="choice() !== 'dark'"
+      type="button"
+      appThemeSwitch="dark"
+      aria-label="Enable dark theme"
+    >
+      🌙
+    </button>
+  </div>
+</div>

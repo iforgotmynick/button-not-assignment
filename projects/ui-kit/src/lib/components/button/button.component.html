@@ -2,7 +2,7 @@
   <span class="btn__content">
     @if (icon && iconPosition === "left") {
       <span class="btn__icon btn__icon--left" aria-hidden="true">
-        <img [src]="icon" alt="" class="btn__img" />
+        <i [class]="'fas fa-' + icon"></i>
       </span>
     }
 
@@ -10,7 +10,7 @@
 
     @if (icon && iconPosition === "right") {
       <span class="btn__icon btn__icon--right" aria-hidden="true">
-        <img [src]="icon" alt="" class="btn__img" />
+        <i [class]="'fas fa-' + icon"></i>
       </span>
     }
   </span>

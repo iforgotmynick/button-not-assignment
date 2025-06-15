@@ -1,0 +1,19 @@
+@use "sass:map";
+@use "./button-sizes" as *;
+@use "./tokens" as *;
+
+@each $size, $props in $button-sizes {
+  .btn--#{$size} {
+    .btn__icon i {
+      font-size: map.get($props, icon-size);
+    }
+
+    .btn__icon--left {
+      margin-right: map.get($props, gap);
+    }
+
+    .btn__icon--right {
+      margin-left: map.get($props, gap);
+    }
+  }
+}

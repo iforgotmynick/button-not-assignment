@@ -73,14 +73,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-}
+  font-size: inherit;
 
-.btn__icon--left {
-  margin-right: $spacing-2;
-}
-
-.btn__icon--right {
-  margin-left: $spacing-2;
+  i {
+    font-size: inherit;
+    color: currentColor;
+    display: inline-block;
+    line-height: 1;
+  }
 }
 
 .btn__img {

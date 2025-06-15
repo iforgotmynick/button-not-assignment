@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { ButtonConfig } from '../button-config';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,10 +11,10 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./playground-controls.component.scss'],
 })
 export class PlaygroundControlsComponent {
-  @Input() config!: ButtonConfig;
+  readonly config = input.required<ButtonConfig>();
   @Output() configChange = new EventEmitter<ButtonConfig>();
 
   update<K extends keyof ButtonConfig>(key: K, value: ButtonConfig[K]) {
-    this.configChange.emit({ ...this.config, [key]: value });
+    this.configChange.emit({ ...this.config(), [key]: value });
   }
 }

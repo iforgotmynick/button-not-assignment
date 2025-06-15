@@ -1,20 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { ButtonConfig } from '../button-config';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-code-snippet',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './code-snippet.component.html',
   styleUrls: ['./code-snippet.component.scss'],
 })
 export class CodeSnippetComponent {
-  @Input() config!: ButtonConfig;
-
-  get code(): string {
+  readonly config = input.required<ButtonConfig>();
+  readonly code = computed(() => {
     const { type, size, icon, iconPosition, disabled, loading, href } =
-      this.config;
+      this.config();
 
     const lines = [
       `<app-button`,
@@ -31,9 +29,9 @@ export class CodeSnippetComponent {
     ];
 
     return lines.filter(Boolean).join('\n');
-  }
+  });
 
   copy(): void {
-    navigator.clipboard.writeText(this.code);
+    navigator.clipboard.writeText(this.code());
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { ButtonConfig } from '../button-config';
 import { ButtonComponent } from '@ui-kit';
 
@@ -10,5 +10,5 @@ import { ButtonComponent } from '@ui-kit';
   styleUrls: ['./button-preview.component.scss'],
 })
 export class ButtonPreviewComponent {
-  @Input() config!: ButtonConfig;
+  readonly config = input.required<ButtonConfig>();
 }

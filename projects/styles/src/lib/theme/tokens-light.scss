@@ -1,6 +1,8 @@
 @use "../tokens/colors" as *;
 
 $background: $white;
+$background-2: $grey-50;
+$text: $grey-900;
 
 // primary
 $color-primary: $blue-700;
@@ -43,3 +45,5 @@ $toggle-hover: rgba($blue-700, $light-hover-opacity);
 $loader-color-primary: $white;
 $loader-color-secondary: $blue-700;
 $loader-color-tertiary: $blue-700;
+
+$border-default: $grey-300;

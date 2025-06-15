@@ -1,0 +1,12 @@
+<header>Button Playground</header>
+
+<div class="playground">
+  <app-playground-controls
+    [config]="config"
+    (configChange)="updateConfig($event)"
+  />
+
+  <app-button-preview [config]="config" />
+
+  <app-code-snippet [config]="config" />
+</div>

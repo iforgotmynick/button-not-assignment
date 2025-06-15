@@ -1,0 +1,35 @@
+@use 'lib/index' as *;
+
+:host {
+  min-width: 250px;
+}
+
+.code-snippet {
+  position: relative;
+  margin-top: $spacing-6;
+  padding: $spacing-5;
+  background-color: $background-2;
+  border-radius: $border-radius-s;
+  border: 1px solid $border-default;
+  color: $text;
+  font-family: monospace;
+  overflow-x: auto;
+
+  button {
+    position: absolute;
+    top: $spacing-3;
+    right: $spacing-3;
+    background: none;
+    border: 1px solid $border-default;
+    border-radius: $border-radius-s;
+    padding: $spacing-2 $spacing-3;
+    font-size: $font-s;
+    color: $text;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: $state-secondary-hover;
+    }
+  }
+}

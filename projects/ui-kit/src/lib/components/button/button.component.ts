@@ -3,67 +3,52 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Input,
-  OnChanges,
   Output,
+  computed,
+  input,
 } from '@angular/core';
 
 @Component({
   selector: 'app-button',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnChanges {
-  @Input() type: 'primary' | 'secondary' | 'tertiary' = 'primary';
-  @Input() size: 'small' | 'medium' | 'large' = 'medium';
-  @Input() disabled = false;
-  @Input() loading = false;
-  @Input() href?: string;
-  @Input() icon?: string;
-  @Input() iconPosition?: 'left' | 'right' = 'left';
-
+export class ButtonComponent {
   @Output() readonly onClick = new EventEmitter<void>();
 
-  private _classes: string[] = [];
+  readonly type = input<'primary' | 'secondary' | 'tertiary'>('primary');
+  readonly size = input<'small' | 'medium' | 'large'>('medium');
+  readonly disabled = input<boolean>(false);
+  readonly loading = input<boolean>(false);
+  readonly href = input<string | undefined>();
+  readonly icon = input<string | undefined>();
+  readonly iconPosition = input<'left' | 'right'>('left');
 
-  get isLink(): boolean {
-    return !!this.href;
-  }
-
-  get ariaDisabled(): boolean {
-    return this.disabled || this.loading;
-  }
-
-  get classes(): string[] {
-    return this._classes;
-  }
-
-  ngOnChanges(): void {
-    this._classes = [
-      'btn',
-      `btn--${this.type}`,
-      `btn--${this.size}`,
-      this.disabled ? 'is-disabled' : '',
-      this.loading ? 'is-loading' : '',
-    ];
-  }
+  readonly isLink = computed(() => !!this.href());
+  readonly ariaDisabled = computed(() => this.disabled() || this.loading());
+  readonly classes = computed(() => [
+    'btn',
+    `btn--${this.type()}`,
+    `btn--${this.size()}`,
+    this.disabled() ? 'is-disabled' : '',
+    this.loading() && !this.isLink() ? 'is-loading' : '',
+  ]);
 
   handleClick(): void {
-    if (this.ariaDisabled) {
-      return;
-    }
+    if (this.ariaDisabled()) return;
     this.onClick.emit();
   }
 
   onKeyDown(event: KeyboardEvent): void {
-    if (this.ariaDisabled) return;
+    if (this.ariaDisabled()) return;
 
     const isEnter = event.key === 'Enter';
     const isSpace = event.key === ' ' || event.code === 'Space';
 
-    if ((isEnter || isSpace) && this.isLink) {
+    if ((isEnter || isSpace) && this.isLink()) {
       event.preventDefault();
       this.handleClick();
     }

@@ -1,0 +1,15 @@
+@use "lib/index" as *;
+
+header {
+  font-size: x-large;
+  font-weight: 700;
+  padding: $spacing-5 $spacing-5 0 $spacing-5;
+}
+
+.playground {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-8;
+  padding: $spacing-5;
+  justify-self: center;
+}

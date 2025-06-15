@@ -1,0 +1,7 @@
+@use "lib/index" as *;
+
+.toggle {
+  position: absolute;
+  top: $spacing-3;
+  right: $spacing-3;
+}

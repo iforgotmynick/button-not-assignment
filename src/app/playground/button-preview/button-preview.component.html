@@ -1,0 +1,13 @@
+<div class="preview">
+  <app-button
+    [type]="config.type"
+    [size]="config.size"
+    [icon]="config.icon"
+    [iconPosition]="config.iconPosition || 'left'"
+    [disabled]="!!config.disabled"
+    [loading]="!!config.loading"
+    [href]="config.href"
+  >
+    Playground Button
+  </app-button>
+</div>

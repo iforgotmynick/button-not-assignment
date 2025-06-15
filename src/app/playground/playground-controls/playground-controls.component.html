@@ -1,0 +1,69 @@
+<div class="controls">
+  <label>
+    Type:
+    <select [ngModel]="config.type" (ngModelChange)="update('type', $event)">
+      <option value="primary">Primary</option>
+      <option value="secondary">Secondary</option>
+      <option value="tertiary">Tertiary</option>
+    </select>
+  </label>
+
+  <label>
+    Size:
+    <select [ngModel]="config.size" (ngModelChange)="update('size', $event)">
+      <option value="small">Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+    </select>
+  </label>
+
+  <label>
+    Icon:
+    <select [ngModel]="config.icon" (ngModelChange)="update('icon', $event)">
+      <option value="arrow-left">Arrow Left</option>
+      <option value="arrow-right">Arrow Right</option>
+      <option value="">-</option>
+    </select>
+  </label>
+
+  <label>
+    Icon Position:
+    <select
+      [ngModel]="config.iconPosition"
+      (ngModelChange)="update('iconPosition', $event)"
+    >
+      <option value="left">Left</option>
+      <option value="right">Right</option>
+    </select>
+  </label>
+
+  <label>
+    Href:
+    <input
+      type="text"
+      [value]="config.href"
+      (input)="update('href', $any($event.target).value)"
+      placeholder="https://example.com"
+    />
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      [checked]="config.disabled"
+      (change)="update('disabled', !config.disabled)"
+    />
+    Disabled
+  </label>
+
+  @if (!config.href) {
+    <label>
+      <input
+        type="checkbox"
+        [checked]="config.loading"
+        (change)="update('loading', !config.loading)"
+      />
+      Loading
+    </label>
+  }
+</div>

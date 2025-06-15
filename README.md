@@ -1,59 +1,130 @@
-# ButtonNotAssignment
+# ButtonComponent
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
+This project includes a flexible and accessible <app-button> component built using Angular. It supports multiple variants (primary, secondary, tertiary), icon integration, loading states, and link behavior. Additionaly due to token nature it can be easily themed for different color schemes and more variants or sizes could be added
 
-## Development server
+### Original sketch
 
-To start a local development server, run:
+![Sketch](src/assets/sketch.png)
 
-```bash
-ng serve
+---
+
+## How to Run
+
+1. Install dependencies:
+
+```
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+2. Run the playground app:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. Run tests:
 
-```bash
-ng generate --help
+```
+npm test
 ```
 
-## Building
+4. Lint the source:
 
-To build the project run:
-
-```bash
-ng build
+```
+npm run lint
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+5. Build the library:
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+```
+ng build ui-kit
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## Overview
 
-```bash
-ng e2e
-```
+The `<app-button>` component is a ui-kit component that enables application design to be consisted throughout the application. It provides customization and theming while maintaining accessibility best practices. The component is responsive, keyboard-accessible, supports icons, and includes a loading state for async operations.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## API
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Inputs
+
+| Name         | Type                                   | Description                                       |
+| ------------ | -------------------------------------- | ------------------------------------------------- |
+| type         | 'primary' \| 'secondary' \| 'tertiary' | Defines the visual style of the button            |
+| size         | 'small' \| 'medium' \| 'large'         | Controls the size and spacing                     |
+| disabled     | boolean                                | Disables the button, preventing user interaction  |
+| loading      | boolean                                | Displays a spinner instead of the content         |
+| icon         | string                                 | Optional icon name (e.g., FontAwesome icon class) |
+| iconPosition | 'left' \| 'right'                      | Position of the icon relative to the label        |
+| href         | string                                 | If present, the button renders as a link (`<a>`)  |
+
+### Outputs
+
+| Name  | Type       | Description                          |
+| ----- | ---------- | ------------------------------------ |
+| click | MouseEvent | Triggered when the button is clicked |
+
+---
+
+## Usage Examples
+
+### Basic Usage
+
+`<app-button type="primary">Click Me</app-button>`
+
+### With Icon
+
+`<app-button type="primary" icon="arrow-right" iconPosition="right">Next</app-button>`
+
+### Disabled State
+
+`<app-button type="secondary" [disabled]="true">Disabled</app-button>`
+
+### Loading State
+
+`<app-button type="primary" [loading]="true">Save</app-button>`
+
+### As a Link
+
+`<app-button href="https://example.com" type="tertiary">Go to example.com</app-button>`
+
+---
+
+## Design Guidelines
+
+### When to Use Each Type
+
+| Type    | Description                                                                                   | Example                                                                                       |
+|------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **Primary**   | Used for the main call-to-action on a screen. There should typically be only one per view.   | On a modal asking “Are you sure?”, the **Continue** or **Save** button is **Primary**.       |
+| **Secondary** | Used for actions that support the primary one but are not the main focus.                    | A **Cancel** button next to a **Save** in a form is **Secondary**.                            |
+| **Tertiary**  | Used for less prominent actions, or when styling should be minimal (e.g. just a text link). | In a settings page, a **Reset to Defaults** button can be **Tertiary**.                      |
+
+### Best Practices
+
+- Avoid using too many primary buttons on one screen.
+- Use `loading` to indicate async operations and disable the button to prevent duplicate actions.
+- Use `href` for navigational links to ensure proper accessibility semantics.
+
+## Live Playground
+
+The playground app (served with `npm start`) allows you to interactively explore all button variants, sizes, and states. Great for designers or QA to test combinations visually.
+
+---
+
+## Ideas for the future improvements
+
+1. Introduce toggled buttons
+2. Introduce icon-only buttons
+3. Form integration
+4. Transitioning from custom components to a ui-kit like PrimeNG could be beneficial in a long run
+
+
+## Development Notes
+
+- Style tokens are defined in `/styles/tokens/`
+- Button styles are modular and generated from maps

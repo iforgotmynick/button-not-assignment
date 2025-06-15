@@ -100,3 +100,71 @@ describe('ButtonComponent', () => {
     expect(spy).not.toHaveBeenCalled();
   });
 });
+
+describe('ButtonComponent - onKeyDown()', () => {
+  let fixture: ComponentFixture<ButtonComponent>;
+  let component: ButtonComponent;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ButtonComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ButtonComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  afterEach(() => jest.clearAllMocks());
+
+  it('should trigger handleClick() on Enter key if link and not disabled', () => {
+    const spy = jest.spyOn(component, 'handleClick');
+    component.href = '/test';
+    component.disabled = false;
+    component.loading = false;
+    component.ngOnChanges();
+
+    const event = new KeyboardEvent('keydown', { key: 'Enter' });
+    component.onKeyDown(event);
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should trigger handleClick() on Space key if link and not disabled', () => {
+    const spy = jest.spyOn(component, 'handleClick');
+    component.href = '/test';
+    component.disabled = false;
+    component.loading = false;
+    component.ngOnChanges();
+
+    const event = new KeyboardEvent('keydown', { key: ' ' });
+    component.onKeyDown(event);
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should NOT trigger handleClick() if ariaDisabled is true', () => {
+    const spy = jest.spyOn(component, 'handleClick');
+    component.href = '/test';
+    component.disabled = true;
+    component.ngOnChanges();
+
+    const event = new KeyboardEvent('keydown', { key: 'Enter' });
+    component.onKeyDown(event);
+
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('should NOT trigger handleClick() if not a link', () => {
+    const spy = jest.spyOn(component, 'handleClick');
+    component.href = undefined;
+    component.disabled = false;
+    component.loading = false;
+    component.ngOnChanges();
+
+    const event = new KeyboardEvent('keydown', { key: 'Enter' });
+    component.onKeyDown(event);
+
+    expect(spy).not.toHaveBeenCalled();
+  });
+});
